@@ -1,0 +1,41 @@
+name: Run go.sh
+
+# Run only if invoked explicitly
+on: workflow_dispatch
+
+# The job:
+jobs:
+  build_hello:
+    runs-on: ubuntu-18.04
+    steps:
+
+      # These are only deps needed for script below; go.sh will handle
+      # the rest.
+      - name: Install initial dependencies
+        run: sudo apt-get install -y coreutils
+      
+      - name: Checkout repository content
+        uses: actions/checkout@v2
+        
+      - name: Do the thing
+        run: |
+          mkdir artifacts
+          (
+          echo 99 > status.txt  # initial failure
+          bash go.sh
+          echo "$?" > status.txt
+
+          echo "Checksums:"
+          sha256sum artifacts/*
+          ) 2>&1 | tee build.log | \
+          while read l; do
+            echo "::notice::$l"
+          done
+          cp build.log artifacts/
+          exit `cat status.txt`
+
+      - name: Fetch Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: artifacts
+        
