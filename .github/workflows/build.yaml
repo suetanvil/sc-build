@@ -1,7 +1,8 @@
 name: Run go.sh
 
-# Run only if invoked explicitly
-on: workflow_dispatch
+# Run coditions:
+#on: workflow_dispatch      # Explicitly run
+on: push                    # Pushed
 
 # The job:
 jobs:
