@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 # cd to the checkout root directory
 cd -P $(dirname "${BASH_SOURCE[0]}")
