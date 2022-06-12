@@ -1,1 +1,3 @@
-Scripts for building SuperCollider on Linux using GitLab.
+# Scripts to build Supercollider for Linux
+
+
