@@ -15,7 +15,7 @@ apt-get install -y build-essential cmake makeself libjack-jackd2-dev \
         libsndfile1-dev libfftw3-dev libxt-dev libavahi-client-dev \
         libudev-dev git emacs
 
-apt install -y qt5-default qt5-qmake qttools5-dev qttools5-dev-tools \
+apt-get install -y qt5-default qt5-qmake qttools5-dev qttools5-dev-tools \
     qtdeclarative5-dev qtwebengine5-dev libqt5svg5-dev \
     libqt5websockets5-dev
 

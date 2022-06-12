@@ -21,7 +21,8 @@ if [ -f /.dockerenv ]; then
 fi
 
 [ -d artifacts ] || mkdir artifacts
-./build_scripts/build-on-linux.sh "$tag"
+./build_scripts/build-on-linux.sh "$tag" \
+    || true
 
 exit 0
 

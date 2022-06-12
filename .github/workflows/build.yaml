@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 # The job:
 jobs:
-  build_hello:
+  run_go_sh:
     runs-on: ubuntu-18.04
     steps:
 
