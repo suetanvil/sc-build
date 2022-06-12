@@ -2,6 +2,10 @@
 
 set -e
 
+# cd to the checkout root directory
+cd -P $(dirname "${BASH_SOURCE[0]}")
+
+
 tag=Version-3.12.2
 
 if [ -f /.dockerenv ]; then
