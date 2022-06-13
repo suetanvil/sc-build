@@ -3,10 +3,12 @@ set -e
 
 . /etc/lsb-release
 
-if [ "$UID" != 0 ]; then
-    echo "Must be run as root."
-    exit 1
-fi
+# GitHub Actions doesn't run as root.
+
+# if [ "$UID" != 0 ]; then
+#     echo "Must be run as root."
+#     exit 1
+# fi
 
 apt-get update
 apt-get install -y software-properties-common

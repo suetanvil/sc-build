@@ -4,7 +4,7 @@
 
 # Fail on error
 set -e
-set -x
+
 # Get configuration variables
 root=$(cd -P $(dirname "${BASH_SOURCE[0]}")/..; pwd)
 . "$root/config.sh"

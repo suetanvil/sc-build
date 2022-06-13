@@ -1,12 +1,9 @@
 #!/bin/bash
 
 set -e
-set -x
 
 # cd to the checkout root directory
 cd -P $(dirname "${BASH_SOURCE[0]}")
-
-ls -la /
 
 tag=Version-3.12.2
 
@@ -23,8 +20,7 @@ if [ -f /.dockerenv ] || [ -n "$GITHUB_ACTIONS" ]; then
 fi
 
 [ -d artifacts ] || mkdir artifacts
-./build_scripts/build-on-linux.sh "$tag" \
-    || true
+./build_scripts/build-on-linux.sh "$tag"
 
 exit 0
 
