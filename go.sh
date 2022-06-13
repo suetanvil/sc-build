@@ -6,6 +6,7 @@ set -x
 # cd to the checkout root directory
 cd -P $(dirname "${BASH_SOURCE[0]}")
 
+ls -la /
 
 tag=Version-3.12.2
 
