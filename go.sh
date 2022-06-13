@@ -10,7 +10,7 @@ ls -la /
 
 tag=Version-3.12.2
 
-if [ -f /.dockerenv ]; then
+if [ -f /.dockerenv ] || [ -n "$GITHUB_ACTIONS" ]; then
     . /etc/lsb-release
 
     if [ "$DISTRIB_RELEASE" = 18.04 ]; then
