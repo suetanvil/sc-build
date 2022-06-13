@@ -11,11 +11,11 @@ if [ -f /.dockerenv ] || [ -n "$GITHUB_ACTIONS" ]; then
     . /etc/lsb-release
 
     if [ "$DISTRIB_RELEASE" = 18.04 ]; then
-        . build_scripts/linux-setup-ubuntu-18-docker.sh
+        sudo bash build_scripts/linux-setup-ubuntu-18-docker.sh
     else
         # We only really use Ubuntu 18, but this might work on other
         # versions.
-        . build_scripts/linux-setup.sh
+        sudo bash build_scripts/linux-setup.sh
     fi
 fi
 
