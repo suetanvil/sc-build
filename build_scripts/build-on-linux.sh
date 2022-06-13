@@ -9,9 +9,6 @@ set -e
 root=$(cd -P $(dirname "${BASH_SOURCE[0]}")/..; pwd)
 . "$root/config.sh"
 
-#MSG=true
-MSG=echo
-
 ARTIFACTS="$root/artifacts"
 
 SC_PREFIX=opt/SuperCollider         # Must be relative
@@ -46,6 +43,7 @@ function build_tag {
     mkdir install_tmp
 
     # Now, do the actual build
+    echo "Preparing the checkout."
     cd workdir/supercollider
     git reset --hard
     git clean -x -f -d
@@ -53,16 +51,20 @@ function build_tag {
     git submodule update --init --recursive
     git clean -x -f -d  # just in case
 
+    echo "Running cmake"
     mkdir build
     cd build
     cmake \
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_INSTALL_PREFIX:PATH="/$prefix" \
           ..
+
+    echo "Building..."
     make -j $THREADS
 
     # And choose an alternate installation directory that we can use
     # for tarring
+    echo "Installing..."
     make DESTDIR="$workroot/install_tmp" install
 
     # Create a workdir for creating the installer
@@ -95,6 +97,8 @@ function build_tag {
 
 
 function setup_workdir() {
+    echo "Setting up environment."
+
     [ -d workdir ] || mkdir workdir
     [ -d $ARTIFACTS ] || mkdir $ARTIFACTS
 
@@ -126,9 +130,8 @@ if [ -z "$tag" ]; then
     exit 1
 fi
 
+echo "Building SuperCollider $tag ($THREADS threads)"
 
 cd $root
-
 setup_workdir
 build_tag "$tag" "$suffix"
-

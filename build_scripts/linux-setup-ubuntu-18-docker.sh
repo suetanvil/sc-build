@@ -11,7 +11,7 @@ cd -P $(dirname "${BASH_SOURCE[0]}")/..
 # Ubuntu 18's cmake is too old so we get the one from Kitware instead.
 if [ ! -f /etc/apt/sources.list.d/kitware.list ]; then
     [ -x /usr/bin/cmake ] && apt-get remove -y cmake
-    apt-get install -y wget gpg
+    sudo apt-get install -y wget gpg
 
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
         | gpg --dearmor - | \
@@ -19,6 +19,6 @@ if [ ! -f /etc/apt/sources.list.d/kitware.list ]; then
 
     echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ bionic main' | \
         tee /etc/apt/sources.list.d/kitware.list >/dev/null
-    apt-get update
-    apt-get install -y cmake
+    sudo apt-get update
+    sudo apt-get install -y cmake
 fi
